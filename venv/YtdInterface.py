@@ -4,12 +4,15 @@ from pytube import YouTube
 from tkinter import filedialog
 from PIL import Image,ImageTk
 import threading
+import os
 window = tk.Tk()
-window.iconbitmap("ytdIcon.ico")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+#print(BASE_DIR)
+window.iconbitmap(os.path.join(BASE_DIR,"ytdIcon.ico"))
 window.title("Youtube Video Downloader")
 window.geometry("900x500")
 #Image Setting !!
-path = "ytd.jpg"
+path = os.path.join(BASE_DIR,"ytd.jpg")
 img = Image.open(path)
 image = img.resize((700, 200), Image.ANTIALIAS)
 img = ImageTk.PhotoImage(image)
