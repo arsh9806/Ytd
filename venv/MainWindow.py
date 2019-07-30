@@ -11,29 +11,32 @@ from pytube import YouTube
 import threading
 from venv.VideoListBox import Ui_WindwForVideos
 from venv.AudioListBox import Ui_AudioListBox
+from PyQt5.QtWidgets import QMessageBox
 
 class Ui_MainWindow(object):
     def Open_VideoWin(self):
-
         link = self.UrlEntry.text()
         print(link)
         video = YouTube(link)
-
+        i = 0
+        while i<=50:
+            self.progressBar.setValue(i)
         streams = video.streams.filter(progressive=True).order_by('resolution').desc().all()
         for i in streams:
             print(i)
         self.Vidwindow = QtWidgets.QMainWindow()
         self.VideoBox = Ui_WindwForVideos()
         self.VideoBox.setupUi(self.Vidwindow)
-
+        while i<=101:
+            self.progressBar.setValue(100)
         self.Vidwindow.show()
 
 
     def Open_AudioWin(self):
-        self.Audiowindow = QtWidgets.QMainWindow()
-        self.AudioBox = Ui_AudioListBox()
-        self.AudioBox.setupUi(self.Audiowindow)
-        self.Audiowindow.show()
+            self.Audiowindow = QtWidgets.QMainWindow()
+            self.AudioBox = Ui_AudioListBox()
+            self.AudioBox.setupUi(self.Audiowindow)
+            self.Audiowindow.show()
 
 
 

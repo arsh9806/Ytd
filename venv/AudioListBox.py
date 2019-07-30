@@ -7,8 +7,10 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QAbstractItemView
 
 class Ui_AudioListBox(object):
+
     def setupUi(self, AudioListBox):
         AudioListBox.setWindowIcon(QtGui.QIcon("ytdIcon.ico"))
         AudioListBox.setObjectName("AudioListBox")
@@ -20,8 +22,16 @@ class Ui_AudioListBox(object):
         self.AvalaibleAudio = QtWidgets.QLabel(self.centralwidget)
         self.AvalaibleAudio.setObjectName("AvalaibleAudio")
         self.verticalLayout.addWidget(self.AvalaibleAudio)
+        #list View
+
         self.AudioListView = QtWidgets.QListView(self.centralwidget)
         self.AudioListView.setObjectName("AudioListView")
+        self.AudioListView.setEditTriggers(QAbstractItemView.NoEditTriggers) #data in listView will be read only
+        model = QtGui.QStandardItemModel()
+        self.AudioListView.setModel(model)
+        item = QtGui.QStandardItem("hello")
+        model.appendRow(item)
+
         self.verticalLayout.addWidget(self.AudioListView)
         self.DownloadAudio = QtWidgets.QPushButton(self.centralwidget)
         self.DownloadAudio.setObjectName("DownloadAudio")
@@ -47,6 +57,7 @@ class Ui_AudioListBox(object):
         AudioListBox.setWindowTitle(_translate("AudioListBox", "MainWindow"))
         self.AvalaibleAudio.setText(_translate("AudioListBox", "<html><head/><body><p align=\"center\"><span style=\" font-size:9pt; font-weight:600;\">Avalaible Audio Qualities</span></p></body></html>"))
         self.DownloadAudio.setText(_translate("AudioListBox", "Download Selected"))
+
 
 
 if __name__ == "__main__":
